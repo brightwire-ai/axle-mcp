@@ -1,15 +1,14 @@
 # Connect Claude Code
 
-You need Claude Code and the hub Google account you were given.
-
-In a terminal, outside the Claude prompt:
+You need Claude Code, the deployment's MCP URL, and the account that deployment gave you. The usual client id is `claude-code`.
 
 ```bash
-claude mcp add --transport http --client-id claude-code --scope user axle https://mcp.axle.brightwire.ai/mcp
+export AXLE_MCP_URL=https://mcp.example.com/mcp
+claude mcp add --transport http --client-id claude-code --scope user axle "$AXLE_MCP_URL"
 claude mcp login axle
 ```
 
-`--scope user` keeps the server available in every project. A browser opens for the hub Google sign-in. When it finishes, Claude Code lists the Axle tools.
+`--scope user` keeps the server available in every project. A browser opens for that deployment's sign-in. When it finishes, Claude Code lists the Axle tools.
 
 Check:
 

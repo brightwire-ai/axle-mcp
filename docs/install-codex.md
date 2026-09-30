@@ -1,13 +1,14 @@
 # Connect Codex
 
-You need the Codex CLI and the hub Google account you were given.
+You need the Codex CLI, the deployment's MCP URL, and the account that deployment gave you. The usual client id is `codex`.
 
 ```bash
-codex mcp add axle --url https://mcp.axle.brightwire.ai/mcp --oauth-client-id codex
+export AXLE_MCP_URL=https://mcp.example.com/mcp
+codex mcp add axle --url "$AXLE_MCP_URL" --oauth-client-id codex
 codex mcp login axle
 ```
 
-A browser opens for the hub Google sign-in. When it finishes, start Codex and ask it to use the Axle tools.
+A browser opens for that deployment's sign-in. When it finishes, start Codex and ask it to use the Axle tools.
 
 Check:
 
