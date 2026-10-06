@@ -1,17 +1,11 @@
-# Deployments
+# Hosted server
 
-Replace `AXLE_MCP_URL` in the install guides with the URL for the deployment you are joining.
+The Axle hub hosts the MCP server. Use this URL in every install guide.
 
-| Deployment | MCP URL |
+| | |
 |---|---|
-| Brightwire hub | `https://mcp.axle.brightwire.ai/mcp` |
+| URL | `https://mcp.axle.brightwire.ai/mcp` |
+| Transport | Streamable HTTP |
+| Sign-in | OAuth. The client opens the hub's Keycloak page. There is no API key to paste. |
 
-Sign-in is whatever that deployment uses. Open the client, and the browser shows its page. For the Brightwire hub today:
-
-```bash
-export AXLE_MCP_URL=https://mcp.axle.brightwire.ai/mcp
-```
-
-The server publishes its sign-in details at [`/.well-known/oauth-protected-resource`](https://mcp.axle.brightwire.ai/.well-known/oauth-protected-resource).
-
-A new deployment is another row in this table: a host, the same `/mcp` path, and the account that deployment issues. The install commands stay the same.
+Sign in with a hub account that has a role for the tools you need. The tools you see depend on the account you sign in with.

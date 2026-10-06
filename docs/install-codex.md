@@ -1,22 +1,21 @@
 # Connect Codex
 
-You need the Codex CLI, the deployment's MCP URL, and the account that deployment gave you. The usual client id is `codex`.
+You need the Codex CLI and a hub account with a role for the tools you need. Codex opens the Axle hub's Keycloak sign-in. There is no API key.
 
 ```bash
-export AXLE_MCP_URL=https://mcp.example.com/mcp
-codex mcp add axle --url "$AXLE_MCP_URL" --oauth-client-id codex
+codex mcp add axle --url https://mcp.axle.brightwire.ai/mcp
 codex mcp login axle
 ```
 
-A browser opens for that deployment's sign-in. When it finishes, start Codex and ask it to use the Axle tools.
+That URL is a streamable HTTP server. OAuth is the login Codex uses for it. A browser opens for the hub's Keycloak sign-in. When it finishes, start Codex and ask it to use the Axle tools.
 
 Check:
 
 ```bash
-codex mcp get axle
+codex mcp list
 ```
 
-If sign-in did not finish, run `codex mcp login axle` again.
+A `401`, or a session that has expired, means run `codex mcp login axle` again.
 
 Then tell Codex:
 

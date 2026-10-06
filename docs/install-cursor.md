@@ -1,29 +1,28 @@
 # Connect Cursor
 
-You need Cursor, the deployment's MCP URL, and the account that deployment gave you. The usual client id is `cursor`. Ask the person who runs the deployment to confirm that id is enabled before you rely on it.
+You need Cursor and a hub account with a role for the tools you need. Cursor opens the Axle hub's Keycloak sign-in. There is no API key.
 
-Add this to `~/.cursor/mcp.json` (every project) or `.cursor/mcp.json` (one project). Leave the client secret out. Axle's clients are public.
+Add this to `~/.cursor/mcp.json` (every project) or `.cursor/mcp.json` (one project):
 
 ```json
 {
   "mcpServers": {
     "axle": {
-      "url": "https://mcp.example.com/mcp",
-      "auth": {
-        "CLIENT_ID": "cursor"
-      }
+      "url": "https://mcp.axle.brightwire.ai/mcp"
     }
   }
 }
 ```
 
-Replace the URL with your deployment's MCP URL. Reload Cursor, open the MCP settings for `axle`, and choose the sign-in action. A browser opens for that deployment's sign-in.
+A `url` entry is a remote server, and Cursor uses OAuth for streamable HTTP. Restart Cursor and finish the sign-in it opens.
 
 In the Cursor CLI, after the server is in `mcp.json`:
 
 ```bash
 agent mcp login axle
 ```
+
+A `401` means authentication is required. When the session expires, run that login again.
 
 Then tell Cursor:
 
