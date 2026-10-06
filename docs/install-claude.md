@@ -1,14 +1,13 @@
 # Connect Claude Code
 
-You need Claude Code, the deployment's MCP URL, and the account that deployment gave you. The usual client id is `claude-code`.
+You need Claude Code and a hub account with a role for the tools you need. Claude Code opens the Axle hub's Keycloak sign-in. There is no API key.
 
 ```bash
-export AXLE_MCP_URL=https://mcp.example.com/mcp
-claude mcp add --transport http --client-id claude-code --scope user axle "$AXLE_MCP_URL"
+claude mcp add --scope user --transport http axle https://mcp.axle.brightwire.ai/mcp
 claude mcp login axle
 ```
 
-`--scope user` keeps the server available in every project. A browser opens for that deployment's sign-in. When it finishes, Claude Code lists the Axle tools.
+`--transport http` selects streamable HTTP. `--scope user` keeps the server available in every project. A browser opens for the hub's Keycloak sign-in.
 
 Check:
 
@@ -16,7 +15,7 @@ Check:
 claude mcp get axle
 ```
 
-The status should be connected. If it says authentication is required, run `claude mcp login axle` again.
+If it says authentication is required, run `claude mcp login axle` again. A `401`, or a session that has expired, means the same thing: sign in again.
 
 Then tell Claude:
 

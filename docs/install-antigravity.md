@@ -1,25 +1,22 @@
 # Connect Google Antigravity
 
-You need the Antigravity CLI or IDE, the deployment's MCP URL, and the account that deployment gave you. The usual client id is the one your operator registered for Antigravity. Axle does not use dynamic client registration, so the client id has to be in the config. There is no client secret.
+You need Antigravity and a hub account with a role for the tools you need. Antigravity opens the Axle hub's Keycloak sign-in. There is no API key.
 
-Antigravity's remote MCP setting uses `serverUrl` (not `url`). From the [Antigravity MCP docs](https://antigravity.google/docs/cli/mcp/), a server without dynamic registration looks like this:
+Remote servers use `serverUrl`. From the [Antigravity MCP docs](https://antigravity.google/docs/mcp/), streamable HTTP looks like this:
 
 ```json
 {
   "mcpServers": {
     "axle": {
-      "serverUrl": "https://mcp.example.com/mcp",
-      "oauth": {
-        "clientId": "antigravity"
-      }
+      "serverUrl": "https://mcp.axle.brightwire.ai/mcp"
     }
   }
 }
 ```
 
-Replace the URL and the client id with the values for your deployment. Use the Interactive MCP Manager or the `mcp_config.json` path in those docs. A browser should open for that deployment's sign-in.
+Put that in `~/.gemini/config/mcp_config.json` (every project) or `.agents/mcp_config.json` (one project). Antigravity runs OAuth for the server. In settings, choose Authenticate next to `axle`, then finish the Keycloak page.
 
-Antigravity's HTTP OAuth support is still catching up. Some versions complete the browser login and then call the server without the token, so the tools never appear. When that happens, connect with Claude Code, Codex, or Cursor instead. Those clients are the ones this guide treats as ready.
+A `401` means authentication is required. When the session expires, authenticate again.
 
 Then tell Antigravity:
 
